@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /* Relacionamento 1:N -> UM user pode ter MUITAS stores => hasMany */
+    public function stores()
+    {
+        return $this->hasMany(Store::class);
+    }
 }
