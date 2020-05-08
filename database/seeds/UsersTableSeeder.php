@@ -13,6 +13,14 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         // criar 3 usuários para testes
-        factory(\App\User::class, 3)->create();
+        // factory(\App\User::class, 3)->create();
+
+        // gera 20 stores para cada user
+        $users = \App\User::all();
+        foreach ($users as $user) {
+            $stores = factory(\App\Store::class, 10)->make();
+
+            $user->stores()->saveMany($stores);
+        }
     }
 }
