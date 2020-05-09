@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -72,7 +73,8 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 container">
+            @include('flash::message');
             @yield('content')
         </main>
     </div>
