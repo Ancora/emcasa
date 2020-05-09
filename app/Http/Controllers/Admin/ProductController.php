@@ -100,6 +100,10 @@ class ProductController extends Controller
      */
     public function destroy($product)
     {
-        //
+        $product = \App\Product::find($product);
+        $product->delete();
+
+        flash('Produto excluído com sucesso!')->success();
+        return redirect()->route('admin.products.index');
     }
 }

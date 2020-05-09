@@ -4,6 +4,7 @@
     <h1>Atualizar Loja</h1>
     <form action="{{route('admin.stores.update', ['store' => $store->id])}}" method="POST">
         @csrf
+        @method('PUT')
 
         <div class="row">
             <div class="form-group col-md-6">

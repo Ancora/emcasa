@@ -7,8 +7,8 @@
             <tr>
                 <th>#</th>
                 <th>Loja</th>
-                <th>CPF/CNPJ</th>
-                <th>Ações</th>
+                <th class="text-center">CPF/CNPJ</th>
+                <th class="text-center">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -16,10 +16,17 @@
                 <tr>
                     <td>{{$store->id}}</td>
                     <td>{{$store->name}}</td>
-                    <td>{{$store->register}}</td>
-                    <td>
-                        <a href="{{route('admin.stores.edit', ['store' => $store->id])}}" class="btn btn-sm btn-primary">Editar</a>
-                        <a href="{{route('admin.stores.destroy', ['store' => $store->id])}}" class="btn btn-sm btn-danger">Excluir</a>
+                    <td class="text-center">{{$store->register}}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <a href="{{route('admin.stores.edit', ['store' => $store->id])}}"
+                                class="btn btn-sm btn-primary">Editar</a>
+                            <form action="{{route('admin.stores.destroy', ['store' => $store->id])}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach
