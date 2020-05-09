@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
 
         <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="{{URL::to('dist/css/bootstrap.min.css')}}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>

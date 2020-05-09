@@ -25,6 +25,8 @@
                         <div class="btn-group">
                             <a href="{{route('admin.products.edit', ['product' => $product->id])}}"
                                 class="btn btn-sm btn-primary">Editar</a>
+                        </div>
+                        <div class="btn-group">
                             <form action="{{route('admin.products.destroy', ['product' => $product->id])}}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -36,5 +38,7 @@
             @endforeach
         </tbody>
     </table>
-    {{$products->links()}}
+    <div class="pagination justify-content-end">
+        {{$products->links()}}
+    </div>
 @endsection
