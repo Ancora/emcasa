@@ -58,9 +58,13 @@
                 <label for="city">Cidade</label>
                 <input type="text" name="city" class="form-control">
             </div>
-            <div class="form-group col-md-2">
+            <div class="form-group col-md-1">
                 <label for="country">UF</label>
                 <input type="text" name="country" class="form-control">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="postal_code">CEP</label>
+                <input type="text" name="postal_code" class="form-control">
             </div>
         </div>
 

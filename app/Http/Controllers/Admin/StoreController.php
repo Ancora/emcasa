@@ -24,7 +24,7 @@ class StoreController extends Controller
         $data = $request->all();
 
         $user = \App\User::find($data['user']);
-        $store = $user->store()->create($data);
+        $store = $user->stores()->create($data);
 
         flash('Loja cadastrada com sucesso!')->success();
         return redirect()->route('admin.stores.create');
