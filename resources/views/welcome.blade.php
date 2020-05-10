@@ -23,7 +23,7 @@
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Cadastre-se</a>
                         @endif
                     @endauth
                 </div>
@@ -31,7 +31,9 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    EmCasa
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        <img src="/images/logoEmCasa0400x130.png" class="img-fluid" alt="">
+                    </a>
                 </div>
 
                 <div class="links">
@@ -46,5 +48,7 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="{{URL::to('js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{URL::to('dist/js/bootstrap.min.js')}}"></script>
     </body>
 </html>

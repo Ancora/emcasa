@@ -14,7 +14,6 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>#</th>
                 <th>Código</th>
                 <th>Nome</th>
                 <th class="text-center">Preço</th>
@@ -25,7 +24,6 @@
         <tbody>
             @foreach ($products as $product)
                 <tr>
-                    <td>{{$product->id}}</td>
                     <td>{{$product->code}}</td>
                     <td>{{$product->name}}</td>
                     <td class="text-center">R$ {{number_format($product->price, 2, ',', '.')}}</td>
