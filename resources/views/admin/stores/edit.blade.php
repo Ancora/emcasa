@@ -90,6 +90,11 @@
         </div>
 
         <div class="row">
+            <div class="form-group col-md-4">
+                <label for="user">Cadastrada por:</label>
+                <input type="text" name="user" class="form-control" value="{{$store->user_id}}">
+            </div>
+
             <div class="col-md-2">
                 <button type="submit" class="btn btn-md btn-success">Atualizar</button>
             </div>
