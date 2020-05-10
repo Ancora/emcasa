@@ -38,8 +38,19 @@ class StoreRequest extends FormRequest
             'postal_code'   => 'required|numeric',
             'phone'         => '',
             'mobile_phone'  => '',
-            'email'         => 'required|email',
+            'email'         => 'required|regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix',
             'delivery_fee'  => ''
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required'  => 'Campo obrigatório!',
+            'min'       => 'Tamanho mínimo de :min caracteres!',
+            'max'       => 'Tamanho máximo de :max caracteres!',
+            'numeric'   => 'Somente números!',
+            'email'     => 'Formato de E-mail inválido!'
         ];
     }
 }
