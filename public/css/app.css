@@ -1,11 +1,16 @@
 html,
 body {
     /* background-color: #fff; */
-    color: #636b6f;
+    color: whitesmoke;
     font-family: "Handlee", sans-serif;
     font-weight: 200;
     height: 100vh;
     margin: 0;
+}
+
+.card-header {
+    background-color: #375a7f; /* bg-primary */
+    color: whitesmoke;
 }
 
 .full-height {

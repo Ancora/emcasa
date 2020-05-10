@@ -1,7 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{route('admin.products.create')}}" class="btn btn-md btn-success">Cadastrar Produto</a>
+    <div class="col-sm-12 btn-group">
+        <div class="col-sm-6">
+            <a href="{{route('admin.products.create')}}" class="btn btn-md btn-success">Cadastrar Produto</a>
+        </div>
+
+        <div class="pagination justify-content-end col-sm-6">
+            {{$products->links()}}
+        </div>
+    </div>
+
     <table class="table table-striped">
         <thead>
             <tr>
@@ -38,7 +47,4 @@
             @endforeach
         </tbody>
     </table>
-    <div class="pagination justify-content-end">
-        {{$products->links()}}
-    </div>
 @endsection
