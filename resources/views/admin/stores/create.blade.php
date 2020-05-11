@@ -160,11 +160,13 @@
         </div>
 
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-8"></div>
+
+            <div class="col-md-2 text-right">
                 <button type="submit" class="btn btn-md btn-success">Cadastrar</button>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 text-right">
                 <a href="{{route('admin.stores.index')}}" class="btn btn-md btn-info">Voltar</a>
             </div>
         </div>

@@ -10,7 +10,7 @@ class StoreController extends Controller
 {
     public function index()
     {
-        $stores = \App\Store::paginate(10);
+        $stores = auth()->user()->stores()->paginate(6);
         return view('admin.stores.index', compact('stores'));
     }
 
@@ -37,7 +37,7 @@ class StoreController extends Controller
         return view('admin.stores.edit', compact('store'));
     }
 
-    public function update(Request $request, $store)
+    public function update(StoreRequest $request, $store)
     {
         $data = ($request->all());
         $store = \App\Store::find($store);

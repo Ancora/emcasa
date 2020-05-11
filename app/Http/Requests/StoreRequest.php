@@ -29,6 +29,7 @@ class StoreRequest extends FormRequest
             'company_name'  => 'required',
             'description'   => 'required|min:10|max:255',
             'prefix'        => 'required|min:3|max:5',
+            'slug'          => '',
             'public_place'  => 'required',
             'number'        => 'required|numeric',
             'complement'    => '',
