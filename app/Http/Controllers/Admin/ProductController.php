@@ -6,14 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Store;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
     private $product;
+    private $store;
 
-    public function __construct(Product $product)
+    public function __construct(Product $product, Store $store)
     {
         $this->product = $product;
+        $this->store = $store;
     }
     /**
      * Display a listing of the resource.
@@ -22,7 +26,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        /* $storesUser = auth()->user()->stores->where('id', '=', 'store'); */
+
         $products = $this->product->paginate(10);
+        /* $products = auth()->user()->stores($store)->products()->paginate(6); */
         return view('admin.products.index', compact('products'));
     }
 
@@ -33,8 +40,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $stores = \App\Store::all(['id', 'name']);
-        return view('admin.products.create', compact('stores'));
+        /* $stores = \App\Store::all(['id', 'name', 'prefix]); */
+        /* $stores = auth()->user()->stores; */
+        $categories = \App\Category::all(['id', 'name']);
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -46,8 +55,12 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->all();
-        $store = \App\Store::find($data['store']);
-        $store->products()->create($data);
+        /* $store = \App\Store::find($data['store']); */
+        /* $store->products()->create($data); */
+        $store = auth()->user()->store;
+        $product = $store->products()->create($data);
+
+        $product->categories()->sync($data['categories']);
 
         flash('Produto cadastrado com sucesso!')->success();
         return redirect()->route('admin.products.create');
@@ -59,9 +72,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($store)
     {
-        //
+        $store = Store::with('products')->find($store);
+        /* dd($store->id); */
+        /* $products = $this->product->store()->with('products')->find($store); */
+        /* SELECT * FROM ancor907_emcasa.stores as s, products as p where p.store_id = s.id; */
+        $products = DB::select('select * from products where store_id = ?', [$store->id]);
+        /* dd($products); */
+        return view('admin.products.show', compact('products'));
     }
 
     /**
@@ -72,8 +91,11 @@ class ProductController extends Controller
      */
     public function edit($product)
     {
-        $product = $this->product->find($product);
-        return view('admin.products.edit', compact('product'));
+        $product = $this->product->findOrFail($product);
+        /* dd($product);
+        $stores = \App\Store::find([]); */
+        $categories = \App\Category::all(['id', 'name']);
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**

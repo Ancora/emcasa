@@ -31,6 +31,14 @@
                     </div>
                 @enderror
             </div>
+            <div class="form-group col-md-4">
+                <label>Categorias</label>
+                <select name="categories[]" class="form-control" multiple>
+                    @foreach ($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <div class="row">
@@ -116,16 +124,32 @@
         </div>
 
         <div class="row">
-            <div class="form-group col-md-4">
+            {{-- <div class="form-group col-md-3">
+                <label for="sale">Preço Promocional</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">R$</span>
+                    </div>
+                    <input type="text" name="sale" class="form-control @error('sale') is-invalid @enderror"
+                        value="{{old('sale')}}"">
+                    @error('sale')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                </div>
+            </div> --}}
+
+            {{-- <div class="form-group col-md-4">
                 <label for="store">Loja</label>
                 <select name="store" class="form-control">
                     @foreach ($stores as $store)
                     <option value="{{$store->id}}">{{$store->name}}</option>
                     @endforeach
                 </select>
-            </div>
+            </div> --}}
 
-            <div class="col-md-4"></div>
+            <div class="col-md-8"></div>
 
             <div class="col-md-2 text-right">
                 <button type="submit" class="btn btn-md btn-success">Cadastrar</button>
@@ -135,15 +159,5 @@
                 <a href="{{route('admin.products.index')}}" class="btn btn-md btn-info">Voltar</a>
             </div>
         </div>
-
-        {{-- <div class="row">
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-md btn-success">Cadastrar</button>
-            </div>
-
-            <div class="col-md-2">
-                <a href="{{route('admin.products.index')}}" class="btn btn-md btn-info">Voltar</a>
-            </div>
-        </div> --}}
     </form>
 @endsection

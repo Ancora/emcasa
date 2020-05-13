@@ -9,7 +9,7 @@
         <div class="row">
             <div class="form-group col-md-2">
                 <label for="code">Código</label>
-                <input type="text" name="code" disabled class="form-control bg-light @error('code') is-invalid @enderror"
+                <input type="text" name="code" readonly class="form-control bg-light @error('code') is-invalid @enderror"
                     value="{{$product->code}}">
                 @error('code')
                     <div class="invalid-feedback">
@@ -111,6 +111,22 @@
         </div>
 
         <div class="row">
+            {{-- <div class="form-group col-md-3">
+                <label for="sale">Preço Promocional</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">R$</span>
+                    </div>
+                    <input type="text" name="sale" class="form-control @error('sale') is-invalid @enderror"
+                        value="{{$product->price}}"">
+                    @error('sale')
+                        <div class="invalid-feedback">
+                            {{$message}}
+                        </div>
+                    @enderror
+                </div>
+            </div> --}}
+
             <div class="col-md-8"></div>
 
             <div class="col-md-2 text-right">

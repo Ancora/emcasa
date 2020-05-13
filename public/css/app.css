@@ -8,6 +8,10 @@ body {
     margin: 0;
 }
 
+.card {
+    border: solid 3px #375a7f;
+}
+
 .card-header {
     background-color: #375a7f; /* bg-primary */
     color: whitesmoke;

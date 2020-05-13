@@ -6,9 +6,9 @@
             <a href="{{route('admin.products.create')}}" class="btn btn-md btn-success">Cadastrar Produto</a>
         </div>
 
-        <div class="pagination justify-content-end col-sm-6">
+        {{-- <div class="pagination justify-content-end col-sm-6">
             {{$products->links()}}
-        </div>
+        </div> --}}
     </div>
 
     <table class="table table-striped">
@@ -17,7 +17,7 @@
                 <th>Código</th>
                 <th>Nome</th>
                 <th class="text-center">Preço</th>
-                <th>Loja</th>
+                {{-- <th>Loja</th> --}}
                 <th class="text-center">Ações</th>
             </tr>
         </thead>
@@ -27,7 +27,7 @@
                         <td>{{$product->code}}</td>
                         <td>{{$product->name}}</td>
                         <td class="text-center">R$ {{number_format($product->price, 2, ',', '.')}}</td>
-                        <td>{{$product->store->name}}</td>
+                        {{-- <td>{{$store->name}}</td> --}}
                         <td class="text-center">
                             <div class="btn-group">
                                 <a href="{{route('admin.products.edit', ['product' => $product->id])}}"

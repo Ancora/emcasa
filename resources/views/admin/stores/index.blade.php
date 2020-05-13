@@ -1,10 +1,5 @@
 @extends('layouts.app')
 
-{{--
-    <div class="container">
-    <div class="row justify-content-center">
-    --}}
-
 @section('content')
     @if (count($stores) === 0)
         <div class="row justify-content-center">
@@ -45,36 +40,79 @@
                 <div class="card-group col-sm-4 mb-2">
                     <div class="card">
                         <div class="card-header">
-                            {{$store->company_name}}
+                            <div class="row col-sm-12">
+                                <div class="col-sm-8">
+                                    <h5>{{$store->company_name}}</h5>
+                                </div>
+                                <div class="col-sm-4 justify-content-end">
+                                    <h4>
+                                        <span class="badge badge-info">
+                                            Itens disponíveis: <span class="badge badge-light">{{$store->products->count()}}</span>
+                                        </span>
+                                    </h4>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="card-body">
                             <div class="card-text">
                                 {{$store->description}}
                             </div>
+                            <div class="row col-sm-12">
+                                <div class="card-text">
+                                <small class="text-muted">Identificador: </small>
+                                {{$store->prefix}}
+                                </div>
+
+                            </div>
+
                             <div class="card-text">
-                                <p class="card-text"><small class="text-muted">Endereço</small></p>
+                                <small class="text-muted">Endereço: </small>
                                 {{$store->public_place}}, {{$store->number}}
-                                <p class="card-text">{{$store->complement}}</p>
+                                {{$store->complement}}
                             </div>
+
                             <div class="card-text">
-                                {{$store->district}}, CEP: {{$store->postal_code}}
+                                <small class="text-muted">Bairro: </small>
+                                {{$store->district}}
                             </div>
+
                             <div class="card-text">
+                                <small class="text-muted">CEP: </small>
+                                {{$store->postal_code}}
+                            </div>
+
+                            <div class="card-text">
+                                <small class="text-muted">Cidade/UF: </small>
                                 {{$store->city}}/{{$store->country}}
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <div class="btn-group">
-                                <a href="{{route('admin.stores.edit', ['store' => $store->id])}}"
-                                    class="btn btn-sm btn-primary">Editar</a>
+                        <div class="card-footer text-center">
+                            <div class="row" style="margin: 0.5em;">
+                                <div class="w-50 p-1">
+                                    <a href="{{route('admin.stores.edit', ['store' => $store->id])}}"
+                                        class="w-100 btn btn-sm btn-primary">Editar Loja</a>
+                                </div>
+                                <div class="w-50 p-1">
+                                    <form action="{{route('admin.stores.destroy', ['store' => $store->id])}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="w-100 btn btn-sm btn-danger">Excluir Loja</button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="btn-group">
-                                <form action="{{route('admin.stores.destroy', ['store' => $store->id])}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
-                                </form>
+
+                            <div class="row" style="margin: 0.5em;">
+                                <div class="w-50 p-1">
+                                    <a href="{{route('admin.products.show', ['product' => $store->id])}}"
+                                        class="w-100 btn btn-sm btn-outline-light">Editar Produtos</a>
+                                </div>
+                                <div class="w-50 p-1">
+                                    <a href="{{route('admin.categories.index')}}"
+                                        class="w-100 btn btn-sm btn-outline-info">Editar Categorias</a>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
