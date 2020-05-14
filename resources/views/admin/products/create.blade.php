@@ -10,7 +10,7 @@
                 <label for="code">Código</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">(prefix)</span>
+                        <span class="input-group-text" id="basic-addon1">(prefixo)</span>
                     </div>
                     <input type="text" name="code" class="form-control @error('code') is-invalid @enderror"
                         value="{{old('code')}}">

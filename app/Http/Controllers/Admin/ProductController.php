@@ -40,8 +40,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        /* $stores = \App\Store::all(['id', 'name', 'prefix]); */
-        /* $stores = auth()->user()->stores; */
+        /* $stores = \App\Store::find($store); */
+        /* $stores = auth()->user()->stores;
+        dd($stores); */
         $categories = \App\Category::all(['id', 'name']);
         return view('admin.products.create', compact('categories'));
     }
@@ -62,7 +63,7 @@ class ProductController extends Controller
 
         $product->categories()->sync($data['categories']);
 
-        flash('Produto cadastrado com sucesso!')->success();
+        flash('Produto ' . '<cite>' . $product->code . '-' . $product->name . '</cite>' . ' cadastrado com sucesso!')->success();
         return redirect()->route('admin.products.create');
     }
 
@@ -75,12 +76,8 @@ class ProductController extends Controller
     public function show($store)
     {
         $store = Store::with('products')->find($store);
-        /* dd($store->id); */
-        /* $products = $this->product->store()->with('products')->find($store); */
-        /* SELECT * FROM ancor907_emcasa.stores as s, products as p where p.store_id = s.id; */
         $products = DB::select('select * from products where store_id = ?', [$store->id]);
-        /* dd($products); */
-        return view('admin.products.show', compact('products'));
+        return view('admin.products.show', compact('products', 'store'));
     }
 
     /**
@@ -92,10 +89,10 @@ class ProductController extends Controller
     public function edit($product)
     {
         $product = $this->product->findOrFail($product);
-        /* dd($product);
-        $stores = \App\Store::find([]); */
+        $stores = \App\Store::find($product->store->id);
+        /* dd($stores->prefix); */
         $categories = \App\Category::all(['id', 'name']);
-        return view('admin.products.edit', compact('product', 'categories'));
+        return view('admin.products.edit', compact('product', 'stores', 'categories'));
     }
 
     /**
@@ -111,8 +108,8 @@ class ProductController extends Controller
         $product = \App\Product::find($product);
         $product->update($data);
 
-        flash('Produto atualizado com sucesso!')->success();
-        return redirect()->route('admin.products.index');
+        flash('Produto ' . '<cite>' . $product->code . '-' . $product->name . '</cite>' . ' atualizado com sucesso!')->success();
+        return redirect()->route('admin.products.show', ['product' => $product->store_id]);
     }
 
     /**
@@ -126,7 +123,7 @@ class ProductController extends Controller
         $product = \App\Product::find($product);
         $product->delete();
 
-        flash('Produto excluído com sucesso!')->success();
+        flash('Produto ' . '<cite>' . $product->code . '-' . $product->name . '</cite>' . ' excluído com sucesso!')->success();
         return redirect()->route('admin.products.index');
     }
 }

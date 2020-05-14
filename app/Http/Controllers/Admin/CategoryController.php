@@ -53,7 +53,7 @@ class CategoryController extends Controller
 
         $category = $this->category->create($data);
 
-        flash('Categoria cadastrada com sucesso!')->success();
+        flash('Categoria ' . '<cite>' . $category->id . '-' . $category->name . '</cite>' . ' cadastrada com sucesso!')->success();
         return redirect()->route('admin.categories.index');
     }
 
@@ -95,7 +95,7 @@ class CategoryController extends Controller
         $category = $this->category->find($category);
         $category->update($data);
 
-        flash('Categoria atualizada com sucesso!')->success();
+        flash('Categoria ' . '<cite>' . $category->id . '-' . $category->name . '</cite>' . ' atualizada com sucesso!')->success();
         return redirect()->route('admin.categories.index');
     }
 
@@ -110,7 +110,7 @@ class CategoryController extends Controller
         $category = $this->category->find($category);
         $category->delete();
 
-        flash('Categoria excluída com sucesso!')->success();
+        flash('Categoria ' . '<cite>' . $category->id . '-' . $category->name . '</cite>' . ' excluída com sucesso!')->success();
         return redirect()->route('admin.categories.index');
     }
 }
