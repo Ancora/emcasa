@@ -31,22 +31,13 @@
                     </div>
                 @enderror
             </div>
-            <div class="form-group col-md-4">
-                <label>Categorias</label>
-                <select name="categories[]" class="form-control" multiple>
-                    @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                </select>
-            </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-12">
                 <label for="description">Descrição</label>
                 <textarea name="description" id="description" cols="30" rows="3"
-                    class="form-control @error('description') is-invalid @enderror"
-                    value="{{old('description')}}""></textarea>
+                    class="form-control @error('description') is-invalid @enderror">{{old('description')}}</textarea>
                 @error('description')
                     <div class="invalid-feedback">
                         {{$message}}
@@ -58,16 +49,16 @@
         <div class="row">
             <div class="form-group col-md-3">
                 <label for="size">Características</label>
-                <input type="text" name="size" class="form-control">
+                <input type="text" name="size" class="form-control" value="{{old('size')}}">
             </div>
             <div class="form-group col-md-3">
                 <label for="slug">Slug</label>
-                <input type="text" name="slug" class="form-control">
+                <input type="text" name="slug" class="form-control" value="{{old('slug')}}">
             </div>
             <div class="form-group col-md-2">
                 <label for="quantity">Estoque Inicial</label>
                 <input type="text" name="quantity" class="form-control @error('quantity') is-invalid @enderror"
-                    value="{{old('quantity')}}"">
+                    value="{{old('quantity')}}">
                 @error('quantity')
                     <div class="invalid-feedback">
                         {{$message}}
@@ -84,7 +75,7 @@
                         <span class="input-group-text" id="basic-addon1">R$</span>
                     </div>
                     <input type="text" name="price" class="form-control @error('price') is-invalid @enderror"
-                        value="{{old('price')}}"">
+                        value="{{old('price')}}">
                     @error('price')
                         <div class="invalid-feedback">
                             {{$message}}
@@ -99,14 +90,14 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">R$</span>
                     </div>
-                    <input type="text" name="discount" class="form-control">
+                    <input type="text" name="discount" class="form-control" value="{{old('discount')}}">
                 </div>
             </div>
 
             <div class="form-group col-md-3">
                 <label for="discount_percentage">Desconto</label>
                 <div class="input-group">
-                    <input type="text" name="discount_percentage" class="form-control">
+                    <input type="text" name="discount_percentage" class="form-control" value="{{old('discount_percentage')}}">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">%</span>
                     </div>
@@ -118,7 +109,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">R$</span>
                     </div>
-                    <input type="text" name="delivery_fee" class="form-control">
+                    <input type="text" name="delivery_fee" class="form-control" value="{{old('delivery_fee')}}">
                 </div>
             </div>
         </div>
@@ -149,7 +140,17 @@
                 </select>
             </div> --}}
 
-            <div class="col-md-8"></div>
+            <div class="col-md-8">
+                <label>Categorias</label>
+                <div class="col-md-6">
+                    @foreach ($categories as $category)
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="categories[]" type="checkbox" value="{{$category->id}}">
+                            <label class="form-check-label">{{$category->name}}</label>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
 
             <div class="col-md-2 text-right">
                 <button type="submit" class="btn btn-md btn-success">Cadastrar</button>

@@ -40,10 +40,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        /* $stores = \App\Store::find($store); */
-        /* $stores = auth()->user()->stores;
-        dd($stores); */
+        $store = auth()->user()->stores;
         $categories = \App\Category::all(['id', 'name']);
+
         return view('admin.products.create', compact('categories'));
     }
 
@@ -55,12 +54,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $data = $request->all();
-        /* $store = \App\Store::find($data['store']); */
-        /* $store->products()->create($data); */
-        $store = auth()->user()->store;
+        $data = $request->all();        /* recupera o que foi digitado no form */
+        $store = auth()->user()->stores;
         $product = $store->products()->create($data);
-
         $product->categories()->sync($data['categories']);
 
         flash('Produto ' . '<cite>' . $product->code . '-' . $product->name . '</cite>' . ' cadastrado com sucesso!')->success();
@@ -77,6 +73,7 @@ class ProductController extends Controller
     {
         $store = Store::with('products')->find($store);
         $products = DB::select('select * from products where store_id = ?', [$store->id]);
+
         return view('admin.products.show', compact('products', 'store'));
     }
 
@@ -89,10 +86,9 @@ class ProductController extends Controller
     public function edit($product)
     {
         $product = $this->product->findOrFail($product);
-        $stores = \App\Store::find($product->store->id);
-        /* dd($stores->prefix); */
         $categories = \App\Category::all(['id', 'name']);
-        return view('admin.products.edit', compact('product', 'stores', 'categories'));
+
+        return view('admin.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -124,6 +120,6 @@ class ProductController extends Controller
         $product->delete();
 
         flash('Produto ' . '<cite>' . $product->code . '-' . $product->name . '</cite>' . ' excluído com sucesso!')->success();
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.show', ['product' => $product->store_id]);
     }
 }

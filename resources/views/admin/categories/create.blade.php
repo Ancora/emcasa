@@ -41,7 +41,7 @@
             </div>
 
             <div class="col-md-2 text-right">
-                <a href="{{route('admin.products.index')}}" class="btn btn-md btn-info">Voltar</a>
+                <a href="{{route('admin.categories.index')}}" class="btn btn-md btn-info">Voltar</a>
             </div>
         </div>
     </form>

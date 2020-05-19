@@ -13,4 +13,10 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+
+    /* Relacionamento N:1 -> MUITAS categories podem pertencer a UM user => belongsTo */
+    /* public function user()
+    {
+        return $this->belongsTo(User::class);
+    } */
 }

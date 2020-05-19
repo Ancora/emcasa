@@ -105,11 +105,11 @@
                             <div class="row" style="margin: 0.5em;">
                                 <div class="w-50 p-1">
                                     <a href="{{route('admin.products.show', ['product' => $store->id])}}"
-                                        class="w-100 btn btn-sm btn-outline-light">Editar Produtos</a>
+                                        class="w-100 btn btn-sm btn-outline-light">Produtos</a>
                                 </div>
                                 <div class="w-50 p-1">
                                     <a href="{{route('admin.categories.index')}}"
-                                        class="w-100 btn btn-sm btn-outline-info">Editar Categorias</a>
+                                        class="w-100 btn btn-sm btn-outline-info">Categorias</a>
                                 </div>
                             </div>
 

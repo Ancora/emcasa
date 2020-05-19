@@ -46,7 +46,7 @@
                                 <div class="col-sm-4 justify-content-end">
                                     <h4>
                                         <span class="badge badge-info">
-                                            Itens disponíveis: <span class="badge badge-light">{{$category->products->count()}}</span>
+                                            Itens incluídos: <span class="badge badge-light">{{$category->products->count()}}</span>
                                         </span>
                                     </h4>
                                 </div>

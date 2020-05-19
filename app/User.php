@@ -42,4 +42,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Store::class);
     }
+
+    /* Relacionamento 1:N -> UM user pode ter MUITAS categories => hasMany */
+    /* public function categories()
+    {
+        return $this->hasMany(Category::class);
+    } */
 }
